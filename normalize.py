@@ -52,7 +52,8 @@ def main():
         # Normalize the file
         # This will fail if there are quotation marks in the file name
         result = subprocess.run(
-            f'ffmpeg -i "{f}" -af "volume={amp} dB" -c:a libmp3lame "new.{f}"',
+            f'ffmpeg -i "{f}" -write_xing 0 -af "volume={amp} dB" '
+            f'-c:a libmp3lame "new.{f}"',
             shell=True, capture_output=True
         )
         if result.returncode:
